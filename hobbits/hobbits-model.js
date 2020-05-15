@@ -1,7 +1,8 @@
 const db = require("../data/config")
 
 async function create(data) {
-	return null
+	const [id] = await db("hobbits").insert(data)
+	return findById(id)
 }
 
 async function update(id, data) {
@@ -17,7 +18,9 @@ function find() {
 }
 
 function findById(id) {
-	return null
+	return db("hobbits")
+		.where("id", id)
+		.first()
 }
 
 module.exports = {
